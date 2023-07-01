@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ReactNode } from 'react';
 import Header from '@/layouts/Header/Header';
 
+
 interface DefaultProps {
   children: ReactNode;
 }
@@ -9,9 +10,9 @@ interface DefaultProps {
 const Default: React.FC<DefaultProps> = ({ children }) => {
   return (
     <>
-      <Header/>
-      {children}
-      <footer>FOOTER</footer>
+       <Header/>
+        {children}
+       <footer>FOOTER</footer>
     </>
   );
 };

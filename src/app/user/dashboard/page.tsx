@@ -11,7 +11,7 @@ import {
   Typography, 
 } from "@mui/material";
 
-import TemplateDefault from "@/components/Templates/Default"
+import TemplateDefault from "@/components/Templates/Default";
 
 export default function Home() {
 
@@ -39,10 +39,10 @@ export default function Home() {
               />
               <CardContent>
                 <Typography variant="h5" component="h2">
-                  Produto X
+                  Eu te amo julia raffin
                 </Typography>
                 <Typography>
-                  R$ 60,00
+                  R$ INIFITO E ALEM 
                 </Typography>
               </CardContent>
               <CardActions>
@@ -65,10 +65,10 @@ export default function Home() {
               />
               <CardContent>
                 <Typography variant="h5" component="h2">
-                  Produto X
+                  Produto Y
                 </Typography>
                 <Typography>
-                  R$ 60,00
+                  R$ 70,00
                 </Typography>
               </CardContent>
               <CardActions>
@@ -91,10 +91,10 @@ export default function Home() {
               />
               <CardContent>
                 <Typography variant="h5" component="h2">
-                  Produto X
+                  Eu tambem te amo lo!!
                 </Typography>
                 <Typography>
-                  R$ 60,00
+                  R$ infinito tbm
                 </Typography>
               </CardContent>
               <CardActions>
@@ -117,10 +117,10 @@ export default function Home() {
               />
               <CardContent>
                 <Typography variant="h5" component="h2">
-                  Produto X
+                  Produto z
                 </Typography>
                 <Typography>
-                  R$ 60,00
+                  R$ 600,00
                 </Typography>
               </CardContent>
               <CardActions>
