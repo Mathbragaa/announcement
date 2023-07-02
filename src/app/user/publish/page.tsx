@@ -1,12 +1,16 @@
 "use client"
 import {  
     Button, 
-    Container, 
     Typography, 
-    Box,
     TextField,
     Select,
+    Container,
+    IconButton, 
   } from "@mui/material";
+
+import{Box} from "@mui/system"
+
+import { DeleteForever } from "@mui/icons-material";
 
 import TemplateDefault from '@/components/Templates/Default';
 import themeDefault from "@/components/Theme/theme";
@@ -77,6 +81,87 @@ const  Publish = () => (
                 <Typography component="div" variant="body2" color="textPrimary">
                     A primeira imagem é a foto principal do seu anúncio.
                 </Typography>
+                 
+                <Box 
+                    sx={{
+                        display:'flex',
+                        mt:1.875,                         
+                        }}
+                >
+                    <Box 
+                        bgcolor={themeDefault.palette.background.paper} 
+                        sx={{
+                            display: 'flex',
+                            justifyContent:'center',
+                            alignItems:'center',
+                            textAlign:'center', 
+                            maxWidth: 200, 
+                            maxHeight: 150, 
+                            p:1.25,
+                            mr:1.875,
+                            border:'2px dashed black', 
+                            flex: '0 0 auto',
+                            }}
+                    >
+                        <Typography variant="body2" color="textPrimary">
+                            Clique para adicionar ou arraste para aqui
+                        </Typography>
+                    </Box>
+                    
+                    <Box
+                        sx={{
+                            position:'relative',
+                            width:200,
+                            height:150,
+                            backgroundSize:'cover',
+                            backgroundPosition:'center center',
+                            flex: '0 0 auto',
+                            '&:hover': {
+                                '& .child-box': {
+                                  display:'flex',
+                                },
+                              }, 
+                        }}
+                        style={{backgroundImage:'url(https://source.unsplash.com/random)'}}
+                    >
+                        <Box 
+                            className="mainImage"
+                            sx={{
+                                backgroundColor:'blue',
+                                padding:'6px 10px',
+                                position:'absolute',
+                                bottom:0,
+                                left:0,
+                            }}
+                        >
+                            <Typography variant="body" color="secondary">
+                                Principal
+                            </Typography>
+                        </Box>
+                        <Box 
+                            className="child-box"
+                            sx=
+                            {{
+                                display: 'none',
+                                justifyContent:'center',
+                                alignItems:'center',
+                                textAlign:'center',
+                                backgroundColor:'rgba(0,0,0,0.7)',
+                                width:'100%',
+                                height:'100%',
+                                '&:hover': {
+                                    display: 'flex',
+                                  }, 
+                                
+                                              
+                            }}
+                        >
+                            <IconButton color='secondary'>
+                                <DeleteForever/>
+                            </IconButton>
+                        </Box>
+                    </Box>
+                </Box>
             </Box>                    
         </Container>
 

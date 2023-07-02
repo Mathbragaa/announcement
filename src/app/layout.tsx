@@ -1,9 +1,7 @@
 'use client'
-import { Inter } from 'next/font/google'
-import { ThemeProvider } from '@mui/system'
-import themeDefault from '@/components/Theme/theme'
 
-const inter = Inter({ subsets: ['latin'] })
+import { Box, ThemeProvider } from '@mui/system'
+import themeDefault from '@/components/Theme/theme'
 
 export const metadata = {
   title: 'Announcement',
@@ -17,9 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <ThemeProvider theme={themeDefault}>
-      <html lang="pt-br">
-        <body className={inter.className}>{children}</body>
-      </html>
+        <html lang="pt-br">
+          <body>
+            <Box sx={{bgcolor:'background.paper'}}>
+              {children}
+            </Box>
+          </body>
+        </html>
     </ThemeProvider>
   )
 }
