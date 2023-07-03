@@ -6,7 +6,11 @@ import {
     TextField,
     Select,
     Container,
-    IconButton, 
+    IconButton,
+    FormControl, 
+    InputLabel,
+    OutlinedInput,
+    InputAdornment,
   } from '@mui/material';
 
 import{Box} from '@mui/system';
@@ -222,6 +226,23 @@ const Publish: React.FC = () => {
                         rows={6}
                         variant="outlined"
                         fullWidth />
+                </Box>
+            </Container >
+
+            <Container maxWidth="md" sx={{ pb: 3 }}>
+                <Box bgcolor={themeDefault.palette.background.default} sx={{ p: 3 }}>
+                <Typography component="h6" variant="h6" color="textPrimary">
+                        Preço
+                    </Typography>
+                    <br/>
+                    <FormControl fullWidth variant="outlined">
+                     <InputLabel variant="outlined">Valor</InputLabel>
+                     <OutlinedInput
+                        onChange={()=>{}}
+                        startAdornment={<InputAdornment position="start">R$</InputAdornment>}
+                        label={1000}
+                     />
+                    </FormControl>
                 </Box>
             </Container>
 
