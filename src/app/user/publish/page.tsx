@@ -15,6 +15,7 @@ import { useDropzone, FileWithPath, FileRejection} from 'react-dropzone';
 
 interface FileWithPreview extends FileWithPath {
     preview: string;
+    name: string;
 }
 
 import { DeleteForever } from '@mui/icons-material';
@@ -40,9 +41,16 @@ const Publish: React.FC = () => {
                 return fileWithPreview;
             });
 
-            setFiles(newFiles);
+            setFiles([
+                ...files,
+                ...newFiles,
+            ]);
         },
     });
+    const handleRemoveFile = (fileName:any) => {
+        const newFileState:any= files.filter(file=>file.name !== fileName)
+        setFiles(newFileState)
+    }
 
     return (
         <TemplateDefault>
@@ -112,7 +120,8 @@ const Publish: React.FC = () => {
                     <Box
                         sx={{
                             display: 'flex',
-                            mt: 1.875,
+                            flexWrap:'wrap',
+                            marginTop:'15px',
                         }}
                     >
                         <Box
@@ -123,71 +132,79 @@ const Publish: React.FC = () => {
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 textAlign: 'center',
-                                maxWidth: 200,
-                                maxHeight: 150,
-                                p: 1.25,
-                                mr: 1.875,
+                                padding:'10px',
+                                width: 176,
+                                height: 126,
+                                margin:'0 15px 15px 0',
                                 border: '2px dashed black',
-                                flex: '0 0 auto',
-                            }}
-                    >
-                        <Typography variant="body2" color="textPrimary">
-                            Clique para adicionar ou arraste para aqui
-                        </Typography>
-                    </Box>
-                    
-                    <Box
-                        sx={{
-                            position:'relative',
-                            width:200,
-                            height:150,
-                            backgroundSize:'cover',
-                            backgroundPosition:'center center',
-                            flex: '0 0 auto',
-                            '&:hover': {
-                                '& .child-box': {
-                                  display:'flex',
-                                },
-                              }, 
-                        }}
-                        style={{backgroundImage:'url(https://source.unsplash.com/random)'}}
-                    >
-                        <Box 
-                            className="mainImage"
-                            sx={{
-                                backgroundColor:'blue',
-                                padding:'6px 10px',
-                                position:'absolute',
-                                bottom:0,
-                                left:0,
                             }}
                         >
-                            <Typography variant="body" color="secondary">
-                                Principal
+                            <input {...getInputProps()} />
+
+                            <Typography variant="body2" color="textPrimary">
+                                Clique para adicionar ou arraste para aqui
                             </Typography>
                         </Box>
-                        <Box 
-                            className="child-box"
-                            sx=
-                            {{
-                                display: 'none',
-                                justifyContent:'center',
-                                alignItems:'center',
-                                textAlign:'center',
-                                backgroundColor:'rgba(0,0,0,0.7)',
-                                width:'100%',
-                                height:'100%',
-                                '&:hover': {
-                                    display: 'flex',
-                                  }, 
-                                
-                                              
-                            }}
-                        >
-                            <IconButton color='secondary'>
-                                <DeleteForever/>
-                            </IconButton>
-                        </Box>
+
+                        {files.map((file, index) => (
+                            <Box
+                                key={file.name}
+                                sx={{
+                                    position: 'relative',
+                                    width: 200,
+                                    height: 150,
+                                    backgroundSize: 'cover',
+                                    margin:'0 15px 15px 0',
+                                    backgroundPosition: 'center center',
+                                    '&:hover': {
+                                        '& .child-box': {
+                                            display: 'flex',
+                                        },
+                                    },
+                                }}
+                                style={{ backgroundImage: `url(${file.preview})` }}
+                            >
+                                {
+                                    index === 0 ?
+                                    <Box
+                                        className="mainImage"
+                                        sx={{
+                                            backgroundColor: 'blue',
+                                            padding: '6px 10px',
+                                            position: 'absolute',
+                                            bottom: 0,
+                                            left: 0,
+                                        }}
+                                    >
+                                        <Typography color="secondary">
+                                            Principal
+                                        </Typography>
+                                    </Box> 
+                                    :null
+                                }
+                                <Box
+                                    className="child-box"
+                                    sx={{
+                                        display: 'none',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        textAlign: 'center',
+                                        backgroundColor: 'rgba(0,0,0,0.7)',
+                                        width: '100%',
+                                        height: '100%',
+                                        '&:hover': {
+                                            display: 'flex',
+                                        },
+                                    }}
+                                >
+                                    <IconButton color='secondary' onClick={()=>handleRemoveFile(file.name)}>
+                                        <DeleteForever fontSize='large' />
+                                    </IconButton>
+                                </Box>
+                            </Box>
+                        ))}
+
+
                     </Box>
                 </Box>
             </Container>
