@@ -134,7 +134,7 @@ const  Publish = () => (
                                 left:0,
                             }}
                         >
-                            <Typography variant="body" color="secondary">
+                            <Typography color="secondary">
                                 Principal
                             </Typography>
                         </Box>
