@@ -20,7 +20,7 @@ export default function Home() {
   return (
 
     <TemplateDefault>
-      <Container maxWidth="md" sx={{py:[8,6]}}>
+      <Container maxWidth="lg" sx={{py:[8,6]}}>
         <Typography component="h1" variant="h3" align="center" color="textPrimary">
           O que deseja encontrar?
         </Typography>
@@ -45,7 +45,7 @@ export default function Home() {
         </Box>
       </Container>
 
-      <Container maxWidth="md" sx={{py:[8,6]}}>
+      <Container maxWidth="lg" sx={{py:[8,6]}}>
         <Typography component="h2" variant="h4" align="center" color="textPrimary">
             Destaques
         </Typography>

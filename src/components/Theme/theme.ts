@@ -15,6 +15,7 @@ const themeDefault = createTheme ({
             paper: 'rgb(242, 244, 245)',
             default: 'white'            
         },
+
     }
 });
 
