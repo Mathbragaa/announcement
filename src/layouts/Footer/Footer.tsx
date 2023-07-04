@@ -20,7 +20,6 @@ import themeDefault from '@/components/Theme/theme';
         component="footer" 
         sx={{
             borderTop:`1px solid ${themeDefault.palette.divider}`,
-            mt:8,
             pt:3,
             pb:3,
             [themeDefault.breakpoints.up('sm')]:{
@@ -62,7 +61,7 @@ import themeDefault from '@/components/Theme/theme';
             <Grid item xs={6} sm={3}>
                 <Box textAlign="center">
                     <Link 
-                        href="#"
+                        href="/user/publish"
                         passHref 
                         style={{ 
                         color: 'inherit', 
@@ -88,6 +87,11 @@ import themeDefault from '@/components/Theme/theme';
                 </Box>
             </Grid>
         </Grid>
+        <Box textAlign="center" sx={{mt:4}}>
+            <Typography color="textSecondary" variant="subtitle1">
+                © 2023 Announcement - Todos os direitos reservados
+            </Typography>
+        </Box>
       </Container>
     );
   };

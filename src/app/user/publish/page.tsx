@@ -24,7 +24,6 @@ interface FileWithPreview extends FileWithPath {
 
 import { DeleteForever } from '@mui/icons-material';
 
-import TemplateDefault from '@/components/Templates/Default';
 import themeDefault from '@/components/Theme/theme';
 
 
@@ -57,9 +56,9 @@ const Publish: React.FC = () => {
     }
 
     return (
-        <TemplateDefault>
+        <>
 
-            <Container maxWidth="sm" sx={{ py: [8, 6] }}>
+            <Container maxWidth="sm">
                 <Typography component="h1" variant="h2" align="center" color="textPrimary">
                     Publicar Anúncio
                 </Typography>
@@ -283,7 +282,7 @@ const Publish: React.FC = () => {
                 </Box>
             </Container>
 
-        </TemplateDefault>
+        </>
     );
 }
 

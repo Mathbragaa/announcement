@@ -1,5 +1,4 @@
 'use client'
-import TemplateDefault from "@/components/Templates/Default"
 import {
   Container,
   InputBase,
@@ -9,7 +8,6 @@ import {
   Card,
   CardMedia,
   CardContent,
-  Button,
 } from "@mui/material"
 
 import { Box } from "@mui/system"
@@ -19,8 +17,8 @@ import { Search } from "@mui/icons-material"
 export default function Home() {
   return (
 
-    <TemplateDefault>
-      <Container maxWidth="lg" sx={{py:[8,6]}}>
+    <>
+      <Container maxWidth="lg">
         <Typography component="h1" variant="h3" align="center" color="textPrimary">
           O que deseja encontrar?
         </Typography>
@@ -160,7 +158,6 @@ export default function Home() {
           </Grid>
         </Grid>
       </Container>   
-    </TemplateDefault>
-
+    </>
   )
 }

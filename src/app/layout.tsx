@@ -1,7 +1,11 @@
 'use client'
+import { Box, ThemeProvider } from '@mui/system';
 
-import { Box, ThemeProvider } from '@mui/system'
-import themeDefault from '@/components/Theme/theme'
+import themeDefault from '@/components/Theme/theme';
+import Header from '@/layouts/Header/Header';
+import Footer from '@/layouts/Footer/Footer';
+
+import './global.css';
 
 export const metadata = {
   title: 'Announcement',
@@ -17,9 +21,16 @@ export default function RootLayout({
     <ThemeProvider theme={themeDefault}>
         <html lang="pt-br">
           <body>
-            <Box sx={{bgcolor:'background.paper'}}>
-              {children}
-            </Box>
+              <Header/>
+                <Box
+                  sx={{
+                    bgcolor:'background.paper',
+                    py: [8, 6],
+                  }}
+                >
+                   {children}
+                </Box>
+              <Footer/>
           </body>
         </html>
     </ThemeProvider>
