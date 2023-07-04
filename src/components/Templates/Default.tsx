@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
 import Header from '@/layouts/Header/Header';
+import Footer from '@/layouts/Footer/Footer';
 
 
 interface DefaultProps {
@@ -12,7 +13,7 @@ const Default: React.FC<DefaultProps> = ({ children }) => {
     <>
        <Header/>
         {children}
-       <footer>FOOTER</footer>
+       <Footer/>
     </>
   );
 };
