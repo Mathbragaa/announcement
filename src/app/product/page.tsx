@@ -30,7 +30,7 @@ export default function Product () {
                             <Carousel
                                 autoPlay={false}
                                 animation="slide"
-                                
+
                             >
                                 <Card sx={{height:'100%'}}>
                                     <CardMedia

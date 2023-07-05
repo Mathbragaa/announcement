@@ -13,7 +13,7 @@ const themeDefault = createTheme ({
 
         background: {
             paper: 'rgb(242, 244, 245)',
-            default: 'white'            
+            default: '#ffffff'            
         },
 
     }

@@ -1,5 +1,6 @@
 'use client'
 
+import themeDefault from "@/components/Theme/theme";
 import { 
   Card as CardMUI,
   CardMedia,
@@ -17,7 +18,7 @@ export default function Card({
     actions: React.ReactNode,
   }) {
     return(
-        <CardMUI>
+        <CardMUI sx={{bgcolor: themeDefault.palette.background.default}}>
               <CardMedia
                 image = {image}
                 title = {title} 
