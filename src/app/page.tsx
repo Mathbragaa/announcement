@@ -5,14 +5,13 @@ import {
   Typography,
   IconButton,
   Grid,
-  Card,
-  CardMedia,
-  CardContent,
 } from "@mui/material"
 
 import { Box } from "@mui/system"
 
 import { Search } from "@mui/icons-material"
+
+import Card from '@/layouts/Card/Card'
 
 export default function Home() {
   return (
@@ -50,112 +49,32 @@ export default function Home() {
         <br/> 
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6} md={4}>
-            <Card>
-              <CardMedia
-                image = {"https://source.unsplash.com/random"}
-                title = "titulo da imagem" 
-                sx={{pt:10}}
-              />
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  Produto W
-                </Typography>
-                <Typography>
-                  R$ INIFITO E ALEM 
-                </Typography>
-              </CardContent>
-            </Card>
+            <Card
+              image = {"https://source.unsplash.com/random"}
+              title = {"Produto A"}
+              subtitle = "R$ 100,00"
+              actions = {""}
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <Card>
-              <CardMedia
-                image = {"https://source.unsplash.com/random"}
-                title = "titulo da imagem" 
-                sx={{pt:10}}
-              />
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  Produto X
-                </Typography>
-                <Typography>
-                  R$ 70,00
-                </Typography>
-              </CardContent>
-            </Card>
+            <Card
+              image = {"https://source.unsplash.com/random"}
+              title = {"Produto B"}
+              subtitle = "R$ 130,00"
+              actions = {""}
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <Card>
-              <CardMedia
-                image = {"https://source.unsplash.com/random"}
-                title = "titulo da imagem" 
-                sx={{pt:10}}
-              />
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  Produto Y
-                </Typography>
-                <Typography>
-                  R$ infinito tbm
-                </Typography>
-              </CardContent>
-            </Card>
+           <Card
+              image = {"https://source.unsplash.com/random"}
+              title = {"Produto C"}
+              subtitle = "R$ 150,00"
+              actions = {""}
+            />
           </Grid>
 
-          <Grid item xs={12} sm={6} md={4}>
-            <Card>
-              <CardMedia
-                image = {"https://source.unsplash.com/random"}
-                title = "titulo da imagem" 
-                sx={{pt:10}}
-              />
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  Produto Z
-                </Typography>
-                <Typography>
-                  R$ 600,00
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={4}>
-            <Card>
-              <CardMedia
-                image = {"https://source.unsplash.com/random"}
-                title = "titulo da imagem" 
-                sx={{pt:10}}
-              />
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  Produto Z
-                </Typography>
-                <Typography>
-                  R$ 600,00
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          
-          <Grid item xs={12} sm={6} md={4}>
-            <Card>
-              <CardMedia
-                image = {"https://source.unsplash.com/random"}
-                title = "titulo da imagem" 
-                sx={{pt:10}}
-              />
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  Produto Z
-                </Typography>
-                <Typography>
-                  R$ 600,00
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
         </Grid>
       </Container>   
     </>

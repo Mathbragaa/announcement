@@ -1,20 +1,17 @@
 'use client'
 
 import { 
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
   Grid, 
   Button, 
   Container, 
   Typography, 
 } from "@mui/material";
 
+import Card from '@/layouts/Card/Card'
+
 export default function Home() {
 
   return (
-
     <>
       <Container maxWidth="sm">
         <Typography component="h1" variant="h2" align="center">
@@ -29,107 +26,75 @@ export default function Home() {
         <Grid container spacing={4}>
 
           <Grid item xs={12} sm={6} md={4}>
-            <Card>
-              <CardMedia
-                image = {"https://source.unsplash.com/random"}
-                title = "titulo da imagem" 
-                sx={{pt:10}}
-              />
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  Eu te amo julia raffin
-                </Typography>
-                <Typography>
-                  R$ INIFITO E ALEM 
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small" color="primary">
-                  Editar
-                </Button> 
-                <Button size="small" color="primary">
-                  Remover
-                </Button> 
-              </CardActions>
-            </Card>
+            <Card
+              image = {"https://source.unsplash.com/random"}
+              title = {"Produto W"}
+              subtitle = "R$ 100,00"
+              actions = {
+                <>
+                  <Button size="small" color="primary">
+                    Editar
+                  </Button> 
+                  <Button size="small" color="primary">
+                    Remover
+                  </Button>
+                </> 
+              }
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <Card>
-              <CardMedia
-                image = {"https://source.unsplash.com/random"}
-                title = "titulo da imagem" 
-                sx={{pt:10}}
-              />
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  Produto Y
-                </Typography>
-                <Typography>
-                  R$ 70,00
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small" color="primary">
-                  Editar
-                </Button> 
-                <Button size="small" color="primary">
-                  Remover
-                </Button> 
-              </CardActions>
-            </Card>
+          <Card
+              image = {"https://source.unsplash.com/random"}
+              title = {"Produto X"}
+              subtitle = "R$ 130,00"
+              actions = {
+                <>
+                  <Button size="small" color="primary">
+                    Editar
+                  </Button> 
+                  <Button size="small" color="primary">
+                    Remover
+                  </Button>
+                </> 
+              }
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <Card>
-              <CardMedia
-                image = {"https://source.unsplash.com/random"}
-                title = "titulo da imagem" 
-                sx={{pt:10}}
-              />
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  Eu tambem te amo lo!!
-                </Typography>
-                <Typography>
-                  R$ infinito tbm
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small" color="primary">
-                  Editar
-                </Button> 
-                <Button size="small" color="primary">
-                  Remover
-                </Button> 
-              </CardActions>
-            </Card>
+            <Card
+              image = {"https://source.unsplash.com/random"}
+              title = {"Produto Y"}
+              subtitle = "R$ 150,00"
+              actions = {
+                <>
+                  <Button size="small" color="primary">
+                    Editar
+                  </Button> 
+                  <Button size="small" color="primary">
+                    Remover
+                  </Button>
+                </> 
+              }
+            />
           </Grid>
           
           <Grid item xs={12} sm={6} md={4}>
-            <Card>
-              <CardMedia
-                image = {"https://source.unsplash.com/random"}
-                title = "titulo da imagem" 
-                sx={{pt:10}}
-              />
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  Produto z
-                </Typography>
-                <Typography>
-                  R$ 600,00
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small" color="primary">
-                  Editar
-                </Button> 
-                <Button size="small" color="primary">
-                  Remover
-                </Button> 
-              </CardActions>
-            </Card>
+          <Card
+              image = {"https://source.unsplash.com/random"}
+              title = {"Produto Z"}
+              subtitle = "R$ 180,00"
+              actions = {
+                <>
+                  <Button size="small" color="primary">
+                    Editar
+                  </Button> 
+                  <Button size="small" color="primary">
+                    Remover
+                  </Button>
+                </> 
+              }
+            />
           </Grid>
 
         </Grid>
