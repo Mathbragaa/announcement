@@ -28,7 +28,7 @@ export default function RootLayout({
                     py: [8, 6],
                   }}
                 >
-                   {children}
+                  {children}
                 </Box>
               <Footer/>
           </body>

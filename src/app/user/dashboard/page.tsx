@@ -9,7 +9,7 @@ import {
 
 import Card from '@/layouts/Card/Card'
 
-export default function Home() {
+export default function Dashboard() {
 
   return (
     <>

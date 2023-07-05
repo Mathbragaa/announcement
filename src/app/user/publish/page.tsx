@@ -1,5 +1,5 @@
 "use client"
-import React, {ChangeEvent, useState} from 'react';
+import React, {useState} from 'react';
 import {  
     Button, 
     Typography, 
@@ -15,7 +15,7 @@ import {
 
 import{Box} from '@mui/system';
 
-import { useDropzone, FileWithPath, FileRejection} from 'react-dropzone';
+import { useDropzone, FileWithPath} from 'react-dropzone';
 
 interface FileWithPreview extends FileWithPath {
     preview: string;
