@@ -13,9 +13,11 @@ import {
     Container,
     IconButton,
     FormControl, 
+    FormHelperText,
     InputLabel,
     OutlinedInput,
     InputAdornment,
+    MenuItem,
   } from '@mui/material';
 
 import { useDropzone, FileWithPath} from 'react-dropzone';
@@ -26,6 +28,7 @@ interface FileWithPreview extends FileWithPath {
 }
 interface FormValues {
     title: string;
+    category: string;
 }
 
 const validationSchema = yup.object({
@@ -34,6 +37,9 @@ const validationSchema = yup.object({
       .required('Campo obrigatório')
       .min(6, 'O título deve ter pelo menos 6 caracteres')
       .max(80, 'O título deve ter no máximo 80 caracteres'),
+      category: yup
+      .string()
+      .required('Campo obrigatório'),
 });  
 
 import { DeleteForever } from '@mui/icons-material';
@@ -71,6 +77,7 @@ const Publish: React.FC = () => {
     const formik = useFormik<FormValues>({
         initialValues: {
           title: '',
+          category: '',
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -90,7 +97,7 @@ const Publish: React.FC = () => {
             </Container>
 
             <form onSubmit={formik.handleSubmit}>
-                    <Container maxWidth="md" sx={{ pb: 3 }}>
+                    <Container maxWidth="md" sx={{ pb: 0}}>
                         <Box bgcolor={themeDefault.palette.background.default} sx={{ p: 3 }}>
                             <Typography component="h6" variant="h6" color="textPrimary">
                                 Titulo do anúncio
@@ -109,34 +116,38 @@ const Publish: React.FC = () => {
                             <Typography component="h6" variant="h6" color="textPrimary">
                                 Categoria
                             </Typography>
-                            <Select
-                                native
-                                value=""
+
+                            <FormControl 
+                                error={formik.touched.category && Boolean(formik.errors.category)}
                                 fullWidth
-                                onChange={() => { } }
-                                inputProps={{
-                                    name: 'age',
-                                }}
-                            >
-
-                                <option value="">Selecione</option>
-                                <option value={1}>Bebê e criança</option>
-                                <option value={1}>Agricultura</option>
-                                <option value={1}>Moda</option>
-                                <option value={1}>Veículos</option>
-                                <option value={1}>Serviços</option>
-                                <option value={1}>Lazer</option>
-                                <option value={1}>Animais</option>
-                                <option value={1}>Moveis, Casa e Jardim</option>
-                                <option value={1}>Imóveis</option>
-                                <option value={1}>Equipamentos</option>
-                                <option value={1}>Celulares e Tablets</option>
-                                <option value={1}>Esporte</option>
-                                <option value={1}>Tecnologia</option>
-                                <option value={1}>Outros</option>
-
-
-                            </Select>
+                            > 
+                                
+                                <Select
+                                    id="category"
+                                    name="category"
+                                    value={formik.values.category}
+                                    fullWidth
+                                    onChange={formik.handleChange}
+                                >
+                                    <MenuItem value="Bebê e criança">Bebê e criança</MenuItem>
+                                    <MenuItem value="Agricultura">Agricultura</MenuItem>
+                                    <MenuItem value="Moda">Moda</MenuItem>
+                                    <MenuItem value="Veículos">Veículos</MenuItem>
+                                    <MenuItem value="Serviços">Serviços</MenuItem>
+                                    <MenuItem value="Lazer">Lazer</MenuItem>
+                                    <MenuItem value="Animais">Animais</MenuItem>
+                                    <MenuItem value="Moveis, Casa e Jardim">Moveis, Casa e Jardim</MenuItem>
+                                    <MenuItem value="Imóveis">Imóveis</MenuItem>
+                                    <MenuItem value="Equipamentos">Equipamentos</MenuItem>
+                                    <MenuItem value="Celulares e Tablets">Celulares e Tablets</MenuItem>
+                                    <MenuItem value="Esporte">Esporte</MenuItem>
+                                    <MenuItem value="Tecnologia">Tecnologia</MenuItem>
+                                    <MenuItem value="Outros">Outros</MenuItem>
+                                </Select>
+                                <FormHelperText>
+                                    {formik.touched.category && formik.errors.category}
+                                </FormHelperText>
+                            </FormControl>
                         </Box>
                     </Container>
 
