@@ -8,14 +8,12 @@ import {
     Box,
     Button, 
     Typography, 
-    TextField,
     Select,
     Container,
     IconButton,
     FormControl, 
     FormHelperText,
     InputLabel,
-    OutlinedInput,
     InputAdornment,
     MenuItem,
     Input,
@@ -35,6 +33,7 @@ interface FormValues {
     name: string;
     email: string;
     phone: string;
+    images:[];
 
 }
 
@@ -65,11 +64,16 @@ const validationSchema = yup.object({
       email: yup
       .string()
       .email('Digite um e-mail válido')
-      .required(),
+      .required('Campo obrigatório'),
 
       phone: yup
       .number()
-      .required(),
+      .required('Campo obrigatório'),
+
+      images: yup
+      .array()
+      .min(1,'Selecione pelo menos uma imagem')
+      .required('Campo obrigatório'),
 
 });  
 
@@ -79,31 +83,28 @@ import themeDefault from '@/components/Theme/theme';
 
 
 const Publish: React.FC = () => {
-    const [files, setFiles] = useState<FileWithPreview[]>([]);
+    const [images, setImages] = useState<FileWithPreview[]>([]);
+    
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
             'image/*': [],
         },
         onDrop: (acceptedFiles: FileWithPath[]) => {
 
-            const newFiles: FileWithPreview[] = acceptedFiles.map((file) => {
-                const fileWithPreview: FileWithPreview = Object.assign(file, {
+            const newImages: FileWithPreview[] = acceptedFiles.map((file) => {
+                const image: FileWithPreview = Object.assign(file, {
                     preview: URL.createObjectURL(file),
                 });
-                return fileWithPreview;
+                return image;
             });
 
-            setFiles([
-                ...files,
-                ...newFiles,
-            ]);
+            setImages((prevImages)=>[...prevImages, ...newImages]);
         },
     });
 
-    const handleRemoveFile = (fileName:any) => {
-        const newFileState:any= files.filter(file=>file.name !== fileName)
-        setFiles(newFileState)
-    }
+    const handleRemoveImage = (fileName:string) => {
+        setImages((prevImages) => prevImages.filter((image)=>image.name !== fileName));
+    };
 
     const formik = useFormik<FormValues>({
         initialValues: {
@@ -112,8 +113,9 @@ const Publish: React.FC = () => {
           description: '',
           price: '',
           name: '',
-          email:'',
-          phone:'',
+          email: '',
+          phone: '',
+          images: [],
 
         },
         validationSchema: validationSchema,
@@ -193,10 +195,10 @@ const Publish: React.FC = () => {
 
                     <Container maxWidth="md" sx={{ pb: 3 }}>
                         <Box bgcolor={themeDefault.palette.background.default} sx={{ p: 3 }}>
-                            <Typography component="h6" variant="h6" color="textPrimary">
+                            <Typography component="h6" variant="h6" color={formik.errors.images ? 'error' : 'textPrimary'}>
                                 Imagens
                             </Typography>
-                            <Typography component="div" variant="body2" color="textPrimary">
+                            <Typography component="div" variant="body2" color={formik.errors.images ? 'error' : 'textPrimary'}>
                                 A primeira imagem é a foto principal do seu anúncio.
                             </Typography>
 
@@ -222,16 +224,16 @@ const Publish: React.FC = () => {
                                         border: '2px dashed black',
                                     }}
                                 >
-                                    <input {...getInputProps()} />
+                                    <input name="images" {...getInputProps()} />
 
-                                    <Typography variant="body2" color="textPrimary">
+                                    <Typography variant="body2" color={formik.errors.images ? 'error' : 'textPrimary'}>
                                         Clique para adicionar ou arraste para aqui
                                     </Typography>
                                 </Box>
 
-                                {files.map((file, index) => (
+                                {images.map((image, index) => (
                                     <Box
-                                        key={file.name}
+                                        key={image.name}
                                         sx={{
                                             position: 'relative',
                                             width: 200,
@@ -245,7 +247,7 @@ const Publish: React.FC = () => {
                                                 },
                                             },
                                         }}
-                                        style={{ backgroundImage: `url(${file.preview})` }}
+                                        style={{ backgroundImage: `url(${image.preview})` }}
                                     >
                                         {
                                             index === 0 ?
@@ -280,15 +282,18 @@ const Publish: React.FC = () => {
                                                 },
                                             }}
                                         >
-                                            <IconButton color='secondary' onClick={()=>handleRemoveFile(file.name)}>
+                                            <IconButton color='secondary' onClick={()=>handleRemoveImage(image.name)}>
                                                 <DeleteForever fontSize='large' />
                                             </IconButton>
                                         </Box>
                                     </Box>
                                 ))}
-
-
                             </Box>
+                            {formik.touched.images && formik.errors.images && (
+                                <Typography variant="body2" color="error">
+                                     {formik.errors.images}
+                                </Typography>
+                            )}
                         </Box>
                     </Container>
 
