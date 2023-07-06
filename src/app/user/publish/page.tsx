@@ -18,6 +18,7 @@ import {
     OutlinedInput,
     InputAdornment,
     MenuItem,
+    Input,
   } from '@mui/material';
 
 import { useDropzone, FileWithPath} from 'react-dropzone';
@@ -29,6 +30,7 @@ interface FileWithPreview extends FileWithPath {
 interface FormValues {
     title: string;
     category: string;
+    description: string;
 }
 
 const validationSchema = yup.object({
@@ -40,6 +42,10 @@ const validationSchema = yup.object({
       category: yup
       .string()
       .required('Campo obrigatório'),
+      description: yup
+      .string()
+      .required('Campo obrigatório')
+      .min(50, 'A descrição deve ter pelo menos 50 caracteres'),
 });  
 
 import { DeleteForever } from '@mui/icons-material';
@@ -78,6 +84,7 @@ const Publish: React.FC = () => {
         initialValues: {
           title: '',
           category: '',
+          description: '',
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -98,30 +105,30 @@ const Publish: React.FC = () => {
 
             <form onSubmit={formik.handleSubmit}>
                     <Container maxWidth="md" sx={{ pb: 0}}>
-                        <Box bgcolor={themeDefault.palette.background.default} sx={{ p: 3 }}>
-                            <Typography component="h6" variant="h6" color="textPrimary">
-                                Titulo do anúncio
-                            </Typography>
-                            <TextField
-                                id="title"
-                                name="title"
-                                value={formik.values.title}
-                                onChange={formik.handleChange}
+                        <Box bgcolor={themeDefault.palette.background.default} sx={{ p: 3 }}> 
+                            <FormControl  
                                 error={formik.touched.title && Boolean(formik.errors.title)}
-                                helperText={formik.touched.title && formik.errors.title}
-                                label="ex. : Bola de basquete "
-                                size="small"
-                                fullWidth />
+                                fullWidth
+                            >
+                                <InputLabel sx={{fontWeigth:400, color:themeDefault.palette.primary.main}}>Titulo do anúncio</InputLabel>
+                                <Input
+                                    id="title"
+                                    name="title"
+                                    value={formik.values.title}
+                                    onChange={formik.handleChange}
+                                />
+                                 <FormHelperText>
+                                    {formik.touched.title && formik.errors.title}
+                                </FormHelperText>
+                            </FormControl> 
+
                             <br /><br />
-                            <Typography component="h6" variant="h6" color="textPrimary">
-                                Categoria
-                            </Typography>
 
                             <FormControl 
                                 error={formik.touched.category && Boolean(formik.errors.category)}
                                 fullWidth
                             > 
-                                
+                                <InputLabel sx={{fontWeigth:400, color:themeDefault.palette.primary.main}}>Categoria</InputLabel>
                                 <Select
                                     id="category"
                                     name="category"
@@ -148,6 +155,7 @@ const Publish: React.FC = () => {
                                     {formik.touched.category && formik.errors.category}
                                 </FormHelperText>
                             </FormControl>
+
                         </Box>
                     </Container>
 
@@ -254,17 +262,22 @@ const Publish: React.FC = () => {
 
                     <Container maxWidth="md" sx={{ pb: 3 }}>
                         <Box bgcolor={themeDefault.palette.background.default} sx={{ p: 3 }}>
-                            <Typography component="h6" variant="h6" color="textPrimary">
-                                Descrição
-                            </Typography>
-                            <Typography component="div" variant="body2" color="textPrimary">
-                                Escreva os detalhes do que está vendendo
-                            </Typography>
-                            <TextField
-                                multiline
-                                rows={6}
-                                variant="outlined"
-                                fullWidth />
+
+                            <FormControl  
+                                error={formik.touched.description && Boolean(formik.errors.description)}
+                                fullWidth
+                            >
+                                <InputLabel sx={{fontWeigth:400, color: themeDefault.palette.primary.main}}>Escreva os detalhes do que está vendendo</InputLabel>
+                                <Input
+                                    id="description"
+                                    name="description"
+                                    multiline
+                                    rows={6}
+                                />
+                                <FormHelperText>
+                                    {formik.touched.description && formik.errors.description}
+                                </FormHelperText>
+                            </FormControl>
                         </Box>
                     </Container >
 
