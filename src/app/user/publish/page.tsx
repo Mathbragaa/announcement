@@ -31,6 +31,11 @@ interface FormValues {
     title: string;
     category: string;
     description: string;
+    price: string;
+    name: string;
+    email: string;
+    phone: string;
+
 }
 
 const validationSchema = yup.object({
@@ -39,13 +44,33 @@ const validationSchema = yup.object({
       .required('Campo obrigatório')
       .min(6, 'O título deve ter pelo menos 6 caracteres')
       .max(80, 'O título deve ter no máximo 80 caracteres'),
+
       category: yup
       .string()
       .required('Campo obrigatório'),
+
       description: yup
       .string()
       .required('Campo obrigatório')
       .min(50, 'A descrição deve ter pelo menos 50 caracteres'),
+
+      price: yup
+      .number()
+      .required('Campo obrigatório'),
+
+      name: yup
+      .string()
+      .required('Campo obrigatório'),
+
+      email: yup
+      .string()
+      .email('Digite um e-mail válido')
+      .required(),
+
+      phone: yup
+      .number()
+      .required(),
+
 });  
 
 import { DeleteForever } from '@mui/icons-material';
@@ -85,6 +110,11 @@ const Publish: React.FC = () => {
           title: '',
           category: '',
           description: '',
+          price: '',
+          name: '',
+          email:'',
+          phone:'',
+
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -109,6 +139,7 @@ const Publish: React.FC = () => {
                             <FormControl  
                                 error={formik.touched.title && Boolean(formik.errors.title)}
                                 fullWidth
+                                variant="outlined"
                             >
                                 <InputLabel sx={{fontWeigth:400, color:themeDefault.palette.primary.main}}>Titulo do anúncio</InputLabel>
                                 <Input
@@ -127,14 +158,15 @@ const Publish: React.FC = () => {
                             <FormControl 
                                 error={formik.touched.category && Boolean(formik.errors.category)}
                                 fullWidth
+                                variant="outlined"
                             > 
                                 <InputLabel sx={{fontWeigth:400, color:themeDefault.palette.primary.main}}>Categoria</InputLabel>
                                 <Select
                                     id="category"
                                     name="category"
                                     value={formik.values.category}
-                                    fullWidth
                                     onChange={formik.handleChange}
+                                    fullWidth
                                 >
                                     <MenuItem value="Bebê e criança">Bebê e criança</MenuItem>
                                     <MenuItem value="Agricultura">Agricultura</MenuItem>
@@ -266,11 +298,14 @@ const Publish: React.FC = () => {
                             <FormControl  
                                 error={formik.touched.description && Boolean(formik.errors.description)}
                                 fullWidth
+                                variant="outlined"
                             >
                                 <InputLabel sx={{fontWeigth:400, color: themeDefault.palette.primary.main}}>Escreva os detalhes do que está vendendo</InputLabel>
                                 <Input
                                     id="description"
                                     name="description"
+                                    value={formik.values.description}
+                                    onChange={formik.handleChange}
                                     multiline
                                     rows={6}
                                 />
@@ -278,22 +313,29 @@ const Publish: React.FC = () => {
                                     {formik.touched.description && formik.errors.description}
                                 </FormHelperText>
                             </FormControl>
+
                         </Box>
                     </Container >
 
                     <Container maxWidth="md" sx={{ pb: 3 }}>
                         <Box bgcolor={themeDefault.palette.background.default} sx={{ p: 3 }}>
-                        <Typography component="h6" variant="h6" color="textPrimary">
-                                Preço
-                            </Typography>
                             <br/>
-                            <FormControl fullWidth variant="outlined">
-                            <InputLabel variant="outlined">Valor</InputLabel>
-                            <OutlinedInput
-                                onChange={()=>{}}
-                                startAdornment={<InputAdornment position="start">R$</InputAdornment>}
-                                label={1000}
-                            />
+                            <FormControl  
+                                error={formik.touched.price && Boolean(formik.errors.price)}
+                                fullWidth
+                                variant="outlined"
+                            >
+                                <InputLabel sx={{fontWeigth:400, color: themeDefault.palette.primary.main}}>Preço de venda</InputLabel>
+                                <Input
+                                    id="price"
+                                    name="price"
+                                    value={formik.values.price}
+                                    onChange={formik.handleChange}
+                                    startAdornment={<InputAdornment position="start">R$</InputAdornment>}
+                                />
+                                <FormHelperText>
+                                    {formik.touched.price && formik.errors.price}
+                                </FormHelperText>
                             </FormControl>
                         </Box>
                     </Container>
@@ -304,24 +346,58 @@ const Publish: React.FC = () => {
                                 Dados de contato
                             </Typography>
 
-                            <TextField
-                                label="Nome"
+                            <FormControl  
+                                error={formik.touched.name && Boolean(formik.errors.name)}
+                                fullWidth
                                 variant="outlined"
-                                size="small"
-                                fullWidth />
+                            >
+                                <InputLabel sx={{fontWeigth:400, color:themeDefault.palette.primary.main}}>Nome</InputLabel>
+                                <Input
+                                    id="name"
+                                    name="name"
+                                    value={formik.values.name}
+                                    onChange={formik.handleChange}
+                                />
+                                 <FormHelperText>
+                                    {formik.touched.name && formik.errors.name}
+                                </FormHelperText>
+                            </FormControl> 
                             <br /><br />
 
-                            <TextField
-                                label="E-mail"
+                            <FormControl  
+                                error={formik.touched.email && Boolean(formik.errors.email)}
+                                fullWidth
                                 variant="outlined"
-                                size="small"
-                                fullWidth />
+                            >
+                                <InputLabel sx={{fontWeigth:400, color:themeDefault.palette.primary.main}}> E-mail</InputLabel>
+                                <Input
+                                    id="email"
+                                    name="email"
+                                    value={formik.values.email}
+                                    onChange={formik.handleChange}
+                                />
+                                 <FormHelperText>
+                                    {formik.touched.email && formik.errors.email}
+                                </FormHelperText>
+                            </FormControl> 
                             <br /><br />
-                            <TextField
-                                label="Telefone"
+
+                          <FormControl  
+                                error={formik.touched.phone && Boolean(formik.errors.phone)}
+                                fullWidth
                                 variant="outlined"
-                                size="small"
-                                fullWidth />
+                            >
+                                <InputLabel sx={{fontWeigth:400, color:themeDefault.palette.primary.main}}>Telefone</InputLabel>
+                                <Input
+                                    id="phone"
+                                    name="phone"
+                                    value={formik.values.phone}
+                                    onChange={formik.handleChange}
+                                />
+                                 <FormHelperText>
+                                    {formik.touched.phone && formik.errors.phone}
+                                </FormHelperText>
+                            </FormControl> 
                             <br /><br />
 
                         </Box>
