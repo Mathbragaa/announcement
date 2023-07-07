@@ -25,6 +25,7 @@ interface FileWithPreview extends FileWithPath {
     preview: string;
     name: string;
 }
+
 interface FormValues {
     title: string;
     category: string;
@@ -33,7 +34,7 @@ interface FormValues {
     name: string;
     email: string;
     phone: string;
-    images:[];
+    images:FileWithPreview[];
 
 }
 
@@ -83,28 +84,29 @@ import themeDefault from '@/components/Theme/theme';
 
 
 const Publish: React.FC = () => {
-    const [images, setImages] = useState<FileWithPreview[]>([]);
-    
+      
     const { getRootProps, getInputProps } = useDropzone({
-        accept: {
-            'image/*': [],
-        },
         onDrop: (acceptedFiles: FileWithPath[]) => {
-
-            const newImages: FileWithPreview[] = acceptedFiles.map((file) => {
-                const image: FileWithPreview = Object.assign(file, {
-                    preview: URL.createObjectURL(file),
-                });
-                return image;
-            });
-
-            setImages((prevImages)=>[...prevImages, ...newImages]);
+          const newImages: Partial<FileWithPreview>[] = acceptedFiles.map((file) => ({
+            preview: URL.createObjectURL(file),
+            name: file.name,
+          }));
+    
+          formik.setFieldValue(
+            'images',
+            formik.values.images.concat(newImages) // Adiciona as novas imagens ao array existente
+          );
         },
-    });
-
-    const handleRemoveImage = (fileName:string) => {
-        setImages((prevImages) => prevImages.filter((image)=>image.name !== fileName));
-    };
+      });
+    
+      const handleRemoveImage = (fileName: string) => {
+        formik.setFieldValue(
+          'images',
+          formik.values.images.filter((image) => image.name !== fileName) // Filtra as imagens com base no nome do arquivo
+        );
+      };
+    
+      
 
     const formik = useFormik<FormValues>({
         initialValues: {
@@ -115,7 +117,7 @@ const Publish: React.FC = () => {
           name: '',
           email: '',
           phone: '',
-          images: [],
+          images:[],
 
         },
         validationSchema: validationSchema,
@@ -224,14 +226,15 @@ const Publish: React.FC = () => {
                                         border: '2px dashed black',
                                     }}
                                 >
-                                    <input name="images" {...getInputProps()} />
+                                    <input name="images" {...getInputProps({ accept: 'image/*' })} />
 
                                     <Typography variant="body2" color={formik.errors.images ? 'error' : 'textPrimary'}>
                                         Clique para adicionar ou arraste para aqui
                                     </Typography>
                                 </Box>
 
-                                {images.map((image, index) => (
+                                {Array.isArray(formik.values.images) &&
+                                formik.values.images.map((image, index) => (
                                     <Box
                                         key={image.name}
                                         sx={{
@@ -291,7 +294,7 @@ const Publish: React.FC = () => {
                             </Box>
                             {formik.touched.images && formik.errors.images && (
                                 <Typography variant="body2" color="error">
-                                     {formik.errors.images}
+                                     Campo obrigatório
                                 </Typography>
                             )}
                         </Box>
