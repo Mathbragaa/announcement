@@ -1,5 +1,19 @@
 import * as yup from 'yup';
 
+const initialValues = {
+    title: '',
+    category: '',
+    description: '',
+    price: '',
+    name: '',
+    email: '',
+    phone: '',
+    images:[],
+    password: '',
+    passwordConf: '',
+
+  }
+
 const validationSchema = yup.object({
     title: yup
       .string()
@@ -41,5 +55,5 @@ const validationSchema = yup.object({
 }); 
 
 export {
-    validationSchema
+    validationSchema, initialValues,
 }

@@ -16,7 +16,7 @@ import {
     Input,
   } from '@mui/material';
 
-import {validationSchema} from '@/app/user/publish/formValues'  
+import {validationSchema, initialValues} from '@/app/user/publish/formValues'  
 
 import {FormValues} from '@/app/user/publish/interface'
 import FileUpload from '@/components/FileUpload/FileUpload';
@@ -27,17 +27,7 @@ import themeDefault from '@/components/Theme/theme';
 const Publish: React.FC = () => {
     
     const formik = useFormik<FormValues>({
-        initialValues: {
-          title: '',
-          category: '',
-          description: '',
-          price: '',
-          name: '',
-          email: '',
-          phone: '',
-          images:[],
-
-        },
+        initialValues,
         validationSchema: validationSchema,
         onSubmit: (values) => {
           // Lógica para lidar com o envio do formulário

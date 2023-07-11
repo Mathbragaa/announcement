@@ -13,6 +13,8 @@ interface FormValues {
     email: string;
     phone: string;
     images:FileWithPreview[];
+    password: string;
+    passwordConf: string;
 }
 
 

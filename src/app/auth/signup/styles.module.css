@@ -1,0 +1,10 @@
+.box{
+    background-color: rgb(242, 244, 245);
+    padding: 24px;
+}
+.formControl{
+    margin-bottom: 8px;
+}
+.submit{
+    margin:'3,0,2';
+}
