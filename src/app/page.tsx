@@ -11,7 +11,7 @@ import { Box } from "@mui/system"
 
 import { Search } from "@mui/icons-material"
 
-import Card from '@/layouts/Card/Card'
+import Card from '@/components/Card/Card'
 
 export default function ProductList() {
   return (

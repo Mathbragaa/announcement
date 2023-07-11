@@ -13,7 +13,7 @@ import { Box } from "@mui/system"
 import { Search } from "@mui/icons-material"
 
 import themeDefault from "@/components/Theme/theme"
-import Card from '@/layouts/Card/Card'
+import Card from '@/components/Card/Card'
 
 export default function List(){
     return (

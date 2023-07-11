@@ -7,7 +7,7 @@ import {
   Typography, 
 } from "@mui/material";
 
-import Card from '@/layouts/Card/Card'
+import Card from '@/components/Card/Card'
 
 export default function Dashboard() {
 
@@ -27,7 +27,7 @@ export default function Dashboard() {
 
           <Grid item xs={12} sm={6} md={4}>
             <Card
-              image = {"https://source.unsplash.com/random"}
+              image = {"https://source.unsplash.com/random?a=1"}
               title = {"Produto W"}
               subtitle = "R$ 100,00"
               actions = {
@@ -45,7 +45,7 @@ export default function Dashboard() {
 
           <Grid item xs={12} sm={6} md={4}>
           <Card
-              image = {"https://source.unsplash.com/random"}
+              image = {"https://source.unsplash.com/random?a=2"}
               title = {"Produto X"}
               subtitle = "R$ 130,00"
               actions = {
@@ -63,7 +63,7 @@ export default function Dashboard() {
 
           <Grid item xs={12} sm={6} md={4}>
             <Card
-              image = {"https://source.unsplash.com/random"}
+              image = {"https://source.unsplash.com/random?a=3"}
               title = {"Produto Y"}
               subtitle = "R$ 150,00"
               actions = {
@@ -81,7 +81,7 @@ export default function Dashboard() {
           
           <Grid item xs={12} sm={6} md={4}>
           <Card
-              image = {"https://source.unsplash.com/random"}
+              image = {"https://source.unsplash.com/random?a=4"}
               title = {"Produto Z"}
               subtitle = "R$ 180,00"
               actions = {

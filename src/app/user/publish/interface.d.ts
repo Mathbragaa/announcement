@@ -1,3 +1,5 @@
+import {FileWithPath} from 'react-dropzone';
+
 interface FileWithPreview extends FileWithPath {
     preview: string;
     name: string;
@@ -10,10 +12,10 @@ interface FormValues {
     name: string;
     email: string;
     phone: string;
-    files:[];
-
+    images:FileWithPreview[];
 }
 
+
 export{
-    FileWithPreview, FormValues
+ FormValues, FileWithPreview
 }

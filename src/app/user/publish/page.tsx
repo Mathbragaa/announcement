@@ -1,8 +1,6 @@
 "use client"
 
-import { useState} from 'react';
 import { useFormik } from 'formik';
-import * as yup from 'yup';
 
 import {  
     Box,
@@ -10,7 +8,6 @@ import {
     Typography, 
     Select,
     Container,
-    IconButton,
     FormControl, 
     FormHelperText,
     InputLabel,
@@ -19,95 +16,16 @@ import {
     Input,
   } from '@mui/material';
 
-import { useDropzone, FileWithPath} from 'react-dropzone';
+import {validationSchema} from '@/app/user/publish/formValues'  
 
-interface FileWithPreview extends FileWithPath {
-    preview: string;
-    name: string;
-}
-
-interface FormValues {
-    title: string;
-    category: string;
-    description: string;
-    price: string;
-    name: string;
-    email: string;
-    phone: string;
-    images:FileWithPreview[];
-
-}
-
-const validationSchema = yup.object({
-    title: yup
-      .string()
-      .required('Campo obrigatório')
-      .min(6, 'O título deve ter pelo menos 6 caracteres')
-      .max(80, 'O título deve ter no máximo 80 caracteres'),
-
-      category: yup
-      .string()
-      .required('Campo obrigatório'),
-
-      description: yup
-      .string()
-      .required('Campo obrigatório')
-      .min(50, 'A descrição deve ter pelo menos 50 caracteres'),
-
-      price: yup
-      .number()
-      .required('Campo obrigatório'),
-
-      name: yup
-      .string()
-      .required('Campo obrigatório'),
-
-      email: yup
-      .string()
-      .email('Digite um e-mail válido')
-      .required('Campo obrigatório'),
-
-      phone: yup
-      .number()
-      .required('Campo obrigatório'),
-
-      images: yup
-      .array()
-      .min(1,'Selecione pelo menos uma imagem')
-      .required('Campo obrigatório'),
-
-});  
-
-import { DeleteForever } from '@mui/icons-material';
+import {FormValues} from '@/app/user/publish/interface'
+import FileUpload from '@/components/FileUpload/FileUpload';
 
 import themeDefault from '@/components/Theme/theme';
 
 
 const Publish: React.FC = () => {
-      
-    const { getRootProps, getInputProps } = useDropzone({
-        onDrop: (acceptedFiles: FileWithPath[]) => {
-          const newImages: Partial<FileWithPreview>[] = acceptedFiles.map((file) => ({
-            preview: URL.createObjectURL(file),
-            name: file.name,
-          }));
     
-          formik.setFieldValue(
-            'images',
-            formik.values.images.concat(newImages) // Adiciona as novas imagens ao array existente
-          );
-        },
-      });
-    
-      const handleRemoveImage = (fileName: string) => {
-        formik.setFieldValue(
-          'images',
-          formik.values.images.filter((image) => image.name !== fileName) // Filtra as imagens com base no nome do arquivo
-        );
-      };
-    
-      
-
     const formik = useFormik<FormValues>({
         initialValues: {
           title: '',
@@ -126,6 +44,7 @@ const Publish: React.FC = () => {
           console.log(values);
         },
       });
+
     return (
         <>
             <Container maxWidth="sm">
@@ -196,108 +115,12 @@ const Publish: React.FC = () => {
                     </Container>
 
                     <Container maxWidth="md" sx={{ pb: 3 }}>
-                        <Box bgcolor={themeDefault.palette.background.default} sx={{ p: 3 }}>
-                            <Typography component="h6" variant="h6" color={formik.errors.images ? 'error' : 'textPrimary'}>
-                                Imagens
-                            </Typography>
-                            <Typography component="div" variant="body2" color={formik.errors.images ? 'error' : 'textPrimary'}>
-                                A primeira imagem é a foto principal do seu anúncio.
-                            </Typography>
-
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    flexWrap:'wrap',
-                                    marginTop:'15px',
-                                }}
-                            >
-                                <Box
-                                    {...getRootProps()}
-                                    bgcolor={themeDefault.palette.background.paper}
-                                    sx={{
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        textAlign: 'center',
-                                        padding:'10px',
-                                        width: 176,
-                                        height: 126,
-                                        margin:'0 15px 15px 0',
-                                        border: '2px dashed black',
-                                    }}
-                                >
-                                    <input name="images" {...getInputProps({ accept: 'image/*' })} />
-
-                                    <Typography variant="body2" color={formik.errors.images ? 'error' : 'textPrimary'}>
-                                        Clique para adicionar ou arraste para aqui
-                                    </Typography>
-                                </Box>
-
-                                {Array.isArray(formik.values.images) &&
-                                formik.values.images.map((image, index) => (
-                                    <Box
-                                        key={image.name}
-                                        sx={{
-                                            position: 'relative',
-                                            width: 200,
-                                            height: 150,
-                                            backgroundSize: 'cover',
-                                            margin:'0 15px 15px 0',
-                                            backgroundPosition: 'center center',
-                                            '&:hover': {
-                                                '& .child-box': {
-                                                    display: 'flex',
-                                                },
-                                            },
-                                        }}
-                                        style={{ backgroundImage: `url(${image.preview})` }}
-                                    >
-                                        {
-                                            index === 0 ?
-                                            <Box
-                                                className="mainImage"
-                                                sx={{
-                                                    backgroundColor: 'blue',
-                                                    padding: '6px 10px',
-                                                    position: 'absolute',
-                                                    bottom: 0,
-                                                    left: 0,
-                                                }}
-                                            >
-                                                <Typography color="secondary">
-                                                    Principal
-                                                </Typography>
-                                            </Box> 
-                                            :null
-                                        }
-                                        <Box
-                                            className="child-box"
-                                            sx={{
-                                                display: 'none',
-                                                justifyContent: 'center',
-                                                alignItems: 'center',
-                                                textAlign: 'center',
-                                                backgroundColor: 'rgba(0,0,0,0.7)',
-                                                width: '100%',
-                                                height: '100%',
-                                                '&:hover': {
-                                                    display: 'flex',
-                                                },
-                                            }}
-                                        >
-                                            <IconButton color='secondary' onClick={()=>handleRemoveImage(image.name)}>
-                                                <DeleteForever fontSize='large' />
-                                            </IconButton>
-                                        </Box>
-                                    </Box>
-                                ))}
-                            </Box>
-                            {formik.touched.images && formik.errors.images && (
-                                <Typography variant="body2" color="error">
-                                     Campo obrigatório
-                                </Typography>
-                            )}
-                        </Box>
+                        <FileUpload
+                            images={formik.values.images}
+                            errors={formik.errors.images}
+                            touched={formik.touched.images}
+                            setFieldValue={formik.setFieldValue}
+                        />
                     </Container>
 
                     <Container maxWidth="md" sx={{ pb: 3 }}>

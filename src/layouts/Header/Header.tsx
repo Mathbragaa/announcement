@@ -26,9 +26,10 @@ export default function ButtonAppBar() {
         <AppBar position="static" elevation={3}>
           <Container>
             <Toolbar>
-              <Typography variant="h6" sx={{flexGrow:1}}>
+              <Typography variant="h6" sx={{flexGrow: 1}}>
                 Announcement
               </Typography>
+
               <Link href="/user/publish" passHref style={{ color: 'inherit', textDecoration: 'inherit'}}>
                 <Button color="inherit" variant="outlined">
                   Anunciar e Vender
@@ -53,7 +54,7 @@ export default function ButtonAppBar() {
                   horizontal:'right',
                 }}
               >
-               <Link href="/user/dashboard" passHref style={{ color: 'inherit', textDecoration: 'inherit'}}>
+              <Link href="/user/dashboard" passHref style={{ color: 'inherit', textDecoration: 'inherit'}}>
                 <MenuItem>Meus anúncios</MenuItem>  
               </Link> 
 
@@ -62,7 +63,7 @@ export default function ButtonAppBar() {
               </Link>
                 <Divider sx={{my:"8px", mx:"0px"}}/>
                 <MenuItem>Sair</MenuItem>
-              </Menu>
+              </Menu>           
             </Toolbar>
           </Container>
         </AppBar>
