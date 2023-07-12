@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Theme/ThemeRegistry", "src/components/Templates/Default.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Theme/ThemeRegistry", "src/components/Templates/Default.tsx", "src/app/utils/dbConnect.ts", "src/app/api/users/page.tsx", "src/models/users.ts"],
   "exclude": ["node_modules"]
 }
